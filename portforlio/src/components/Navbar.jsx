@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <nav
       style={{
-        backgroundColor: '#1f2937', // gray-800
+        backgroundColor: '#1f2937',
         color: 'white',
         padding: '16px',
         display: 'flex',
@@ -25,7 +25,6 @@ export default function Navbar() {
         alignItems: 'center'
       }}
     >
-      {/* Left side: Logo + Links */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <NavLink to="/">
           <img src={logo} alt="Logo" style={{ height: '60px', width: 'auto' }} />
@@ -40,7 +39,7 @@ export default function Navbar() {
                   textDecoration: isActive ? 'underline' : 'none',
                   color: 'white',
                 })}
-                onMouseEnter={e => (e.target.style.color = '#D1D5DB')} // hover text-gray-300
+                onMouseEnter={e => (e.target.style.color = '#D1D5DB')} 
                 onMouseLeave={e => (e.target.style.color = 'white')}
               >
                 {l.label}
@@ -50,7 +49,6 @@ export default function Navbar() {
         </ul>
       </div>
 
-      {/* Right side: Auth */}
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {auth.token ? (
           <>

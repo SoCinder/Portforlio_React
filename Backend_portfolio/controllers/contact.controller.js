@@ -1,4 +1,3 @@
-// backend/controllers/contact.controller.js
 const Contact = require('../models/contact.model');
 
 exports.getAll = async (req, res) => {

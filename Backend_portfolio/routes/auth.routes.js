@@ -1,5 +1,4 @@
-// backend/routes/auth.routes.js
-const router        = require('express').Router();
+const router = require('express').Router();
 const asyncHandler  = require('../middlewares/asyncHandler');
 const { signup, signin } = require('../controllers/auth.controller');
 

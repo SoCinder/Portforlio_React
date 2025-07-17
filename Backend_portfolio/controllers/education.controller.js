@@ -1,4 +1,3 @@
-// backend/controllers/education.controller.js
 const Education = require('../models/education.model');
 
 exports.getAll = async (req, res) => {
