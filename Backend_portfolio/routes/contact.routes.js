@@ -1,20 +1,13 @@
-const express = require('express');
-const {
-  getAllContacts,
-  getContactById,
-  addContact,
-  updateContact,
-  deleteContact,
-  deleteAllContacts,
-} = require('../controllers/contact.controller');
+// backend/routes/contact.routes.js
+const router        = require('express').Router();
+const asyncHandler  = require('../middlewares/asyncHandler');
+const { verifyToken, isAdmin } = require('../middlewares/auth.middleware');
+const ctrl          = require('../controllers/contact.controller');
 
-const router = express.Router();
-
-router.get('/', getAllContacts);
-router.get('/:id', getContactById);
-router.post('/', addContact);
-router.put('/:id', updateContact);
-router.delete('/:id', deleteContact);
-router.delete('/', deleteAllContacts);
+router.get('/',      asyncHandler(ctrl.getAll));
+router.get('/:id',   asyncHandler(ctrl.getById));
+router.post('/',     verifyToken, isAdmin, asyncHandler(ctrl.create));
+router.put('/:id',   verifyToken, isAdmin, asyncHandler(ctrl.update));
+router.delete('/:id',verifyToken, isAdmin, asyncHandler(ctrl.remove));
 
 module.exports = router;

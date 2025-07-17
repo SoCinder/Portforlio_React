@@ -1,20 +1,13 @@
-const express = require('express');
-const {
-  getAllUsers,
-  getUserById,
-  addUser,
-  updateUser,
-  deleteUser,
-  deleteAllUsers,
-} = require('../controllers/user.controller');
+// backend/routes/user.routes.js
+const router        = require('express').Router();
+const asyncHandler  = require('../middlewares/asyncHandler');
+const { verifyToken, isAdmin } = require('../middlewares/auth.middleware');
+const ctrl          = require('../controllers/user.controller');
 
-const router = express.Router();
-
-router.get('/', getAllUsers);
-router.get('/:id', getUserById);
-router.post('/', addUser);
-router.put('/:id', updateUser);
-router.delete('/:id', deleteUser);
-router.delete('/', deleteAllUsers);
+router.get('/',      asyncHandler(ctrl.getAll));
+router.get('/:id',   asyncHandler(ctrl.getById));
+router.post('/',     verifyToken, isAdmin, asyncHandler(ctrl.create));
+router.put('/:id',   verifyToken, isAdmin, asyncHandler(ctrl.update));
+router.delete('/:id',verifyToken, isAdmin, asyncHandler(ctrl.remove));
 
 module.exports = router;

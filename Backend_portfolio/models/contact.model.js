@@ -1,11 +1,10 @@
+// backend/models/contact.model.js
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
   firstname: String,
-  lastname: String,
-  email: String,
+  lastname:  String,
+  email:     String
 });
 
-const Contact = mongoose.model('Contact', contactSchema);
-
-module.exports = Contact;
+module.exports = mongoose.model('Contact', contactSchema);

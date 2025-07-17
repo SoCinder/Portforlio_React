@@ -1,13 +1,22 @@
+// backend/models/user.model.js
 const mongoose = require('mongoose');
+const bcrypt   = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  created: { type: Date, default: Date.now },
-  updated: { type: Date, default: Date.now },
+  name:     { type: String, required: true },
+  email:    { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role:     { type: String, enum: ['admin','user'], default: 'user' }
+}, { timestamps: true });
+
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  next();
 });
 
-const User = mongoose.model('User', userSchema);
+userSchema.methods.comparePassword = function(candidate) {
+  return bcrypt.compare(candidate, this.password);
+};
 
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
