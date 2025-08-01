@@ -7,7 +7,7 @@
     "start:dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "cd Backend_portfolio && npm run dev",
     "frontend": "cd portforlio && npm run dev",
-     "build": "cd portforlio && npm run build"
+    "build": "cd portforlio && npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,11 @@
     "parallel": "^2.3.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "vitest": "^3.2.4"
   }
 }
