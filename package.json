@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "cd Backend_portfolio && npm run dev",
-    "frontend": "cd portforlio && npm run dev"
+    "frontend": "cd portforlio && npm run dev",
+     "build": "cd portforlio && npm run build"
   },
   "repository": {
     "type": "git",
